@@ -1,0 +1,550 @@
+wait(1)
+	local Creator = loadstring(game:HttpGet("https://pastebin.com/raw/0fSnvfGt"))() 
+-- Create entity
+local entity = Creator.createEntity({
+    CustomName = "Rebound", -- Custom name of your entity
+    Model = "rbxassetid://12822692255", -- Can be GitHub file or rbxassetid
+    Speed = 80, -- Percentage, 100 = default Rush speed
+    DelayTime = 5, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 40,
+    BreakLights = false,
+    BackwardsMovement = true,
+    FlickerLights = {
+        true, -- Enabled/Disabled
+        3, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        WaitTime = 1,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {5, 10, 0.1, 1}, -- Shake values (don't change if you don't know)
+        90, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://0", -- Image1 url
+            Image2 = "rbxassetid://15264133727", -- Image2 url
+            Shake = false,
+            Sound1 = {
+                103879029437685, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Sound2 = {
+                74885373257467, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
+            },
+            Tease = {
+                false, -- Enabled/Disabled
+                Min = 2,
+                Max = 4,
+            },
+        },
+    },
+    CustomDialog = {"You died to Rebound.", "It has a loud sound and it's coming from the front door.", "Hide in a closet to survive.", "Use the tactics you learned from Ambush."}, -- Custom death message
+})
+
+-----[[ Advanced ]]-----
+entity.Debug.OnEntitySpawned = function(entityTable)
+	spawned = true
+	local Snd = Instance.new("Sound")
+	Snd.Volume = 1
+	Snd.Pitch = 1
+	Snd.SoundId = "rbxassetid://136836151370178"
+	Snd.Parent = workspace
+	Snd.Volume = 1
+	Snd:Play()
+	spawnsnd = Snd
+	game.Debris:AddItem(Snd,25)
+	spawn(function()
+		while Snd.Playing do wait(0.5)
+			if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
+				Snd:Spawn()
+			end
+		end
+	end)
+
+	local Reboundcolor = Instance.new("ColorCorrectionEffect",game.Lighting) game.Debris:AddItem(Reboundcolor,24)
+	Reboundcolor.Name = "Spawn"
+	Reboundcolor.TintColor = Color3.fromRGB(0, 50, 150) Reboundcolor.Saturation = -0.7 Reboundcolor.Contrast = 0
+	game.TweenService:Create(Reboundcolor,TweenInfo.new(15),{TintColor = Color3.fromRGB(255, 255, 255),Saturation = 0, Contrast = 0}):Play()
+	game.Debris:AddItem(Reboundcolor,40)
+	game.TweenService:Create(Snd,TweenInfo.new(23),{Volume = 0}):Play()
+	local cameraShaker = require(game.ReplicatedStorage.CameraShaker)
+	local camera = workspace.CurrentCamera
+
+	local camShake = cameraShaker.new(Enum.RenderPriority.Camera.Value, function(cf)
+		camera.CFrame = camera.CFrame * cf
+	end)
+	camShake:Start()
+	camShake:ShakeOnce(7,5,0.1,10)
+end
+
+entity.Debug.OnEntityDespawned = function(entityTable)
+    print("Entity has despawned:", entityTable.Model)
+end
+
+entity.Debug.OnEntityStartMoving = function(entityTable)
+	spawned = true
+	local Snd = Instance.new("Sound")
+	Snd.Volume = 1
+	Snd.Pitch = 1
+	Snd.SoundId = "rbxassetid://124209439410243"
+	Snd.Parent = workspace
+	Snd.Volume = 1
+	Snd:Play()
+	spawnsnd = Snd
+	game.Debris:AddItem(Snd,25)
+	spawn(function()
+		while Snd.Playing do wait(0.5)
+			if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
+				Snd:Spawn()
+			end
+		end
+	end)
+end
+
+entity.Debug.OnEntityFinishedRebound = function(entityTable)
+    print("Entity has finished rebound:", entityTable.Model)
+end
+
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", entityTable.Model, "has entered room:", room)
+end
+
+entity.Debug.OnLookAtEntity = function(entityTable)
+    print("Player has looked at entity:", entityTable.Model)
+end
+
+entity.Debug.OnDeath = function(entityTable)
+    warn("Player has died.")
+end
+------------------------
+
+-- Run the created entity
+Creator.runEntity(entity)
+
+wait(20)
+	local Creator = loadstring(game:HttpGet("https://pastebin.com/raw/0fSnvfGt"))() 
+-- Create entity
+local entity = Creator.createEntity({
+    CustomName = "Rebound", -- Custom name of your entity
+    Model = "rbxassetid://12822692255", -- Can be GitHub file or rbxassetid
+    Speed = 80, -- Percentage, 100 = default Rush speed
+    DelayTime = 4, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 40,
+    BreakLights = false,
+    BackwardsMovement = true,
+    FlickerLights = {
+        false, -- Enabled/Disabled
+        3, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        WaitTime = 1,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {5, 8, 0.1, 1}, -- Shake values (don't change if you don't know)
+        90, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://0", -- Image1 url
+            Image2 = "rbxassetid://70799128001926", -- Image2 url
+            Shake = false,
+            Sound1 = {
+                103879029437685, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Sound2 = {
+                74885373257467, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
+            },
+            Tease = {
+                false, -- Enabled/Disabled
+                Min = 2,
+                Max = 4,
+            },
+        },
+    },
+    CustomDialog = {"You died to Rebound.", "It has a loud sound and it's coming from the front door.", "Hide in a closet to survive.", "Use the tactics you learned from Ambush."}, -- Custom death message
+})
+
+-----[[ Advanced ]]-----
+entity.Debug.OnEntitySpawned = function(entityTable)
+    print("looping")
+end
+
+entity.Debug.OnEntityDespawned = function(entityTable)
+    print("Entity has despawned:", entityTable.Model)
+end
+
+entity.Debug.OnEntityStartMoving = function(entityTable)
+	spawned = true
+	local Snd = Instance.new("Sound")
+	Snd.Volume = 1
+	Snd.Pitch = 1
+	Snd.SoundId = "rbxassetid://124209439410243"
+	Snd.Parent = workspace
+	Snd.Volume = 1
+	Snd:Play()
+	spawnsnd = Snd
+	game.Debris:AddItem(Snd,25)
+	spawn(function()
+		while Snd.Playing do wait(7)
+			if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
+				Snd:Destroy()
+			end
+		end
+	end)
+end
+
+entity.Debug.OnEntityFinishedRebound = function(entityTable)
+    print("Entity has finished rebound:", entityTable.Model)
+end
+
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", entityTable.Model, "has entered room:", room)
+end
+
+entity.Debug.OnLookAtEntity = function(entityTable)
+    print("Player has looked at entity:", entityTable.Model)
+end
+
+entity.Debug.OnDeath = function(entityTable)
+    warn("Player has died.")
+end
+------------------------
+
+-- Run the created entity
+Creator.runEntity(entity)
+
+wait(20)
+	local Creator = loadstring(game:HttpGet("https://pastebin.com/raw/0fSnvfGt"))() 
+-- Create entity
+local entity = Creator.createEntity({
+    CustomName = "Rebound", -- Custom name of your entity
+    Model = "rbxassetid://12822692255", -- Can be GitHub file or rbxassetid
+    Speed = 80, -- Percentage, 100 = default Rush speed
+    DelayTime = 4, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 40,
+    BreakLights = false,
+    BackwardsMovement = true,
+    FlickerLights = {
+        false, -- Enabled/Disabled
+        3, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        WaitTime = 1,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {5, 8, 0.1, 1}, -- Shake values (don't change if you don't know)
+        90, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://0", -- Image1 url
+            Image2 = "rbxassetid://70799128001926", -- Image2 url
+            Shake = false,
+            Sound1 = {
+                103879029437685, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Sound2 = {
+                74885373257467, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
+            },
+            Tease = {
+                false, -- Enabled/Disabled
+                Min = 2,
+                Max = 4,
+            },
+        },
+    },
+    CustomDialog = {"You died to Rebound.", "It has a loud sound and it's coming from the front door.", "Hide in a closet to survive.", "Use the tactics you learned from Ambush."}, -- Custom death message
+})
+
+-----[[ Advanced ]]-----
+entity.Debug.OnEntitySpawned = function(entityTable)
+    print("looping")
+end
+
+entity.Debug.OnEntityDespawned = function(entityTable)
+    print("Entity has despawned:", entityTable.Model)
+end
+
+entity.Debug.OnEntityStartMoving = function(entityTable)
+	spawned = true
+	local Snd = Instance.new("Sound")
+	Snd.Volume = 1
+	Snd.Pitch = 1
+	Snd.SoundId = "rbxassetid://124209439410243"
+	Snd.Parent = workspace
+	Snd.Volume = 1
+	Snd:Play()
+	spawnsnd = Snd
+	game.Debris:AddItem(Snd,25)
+	spawn(function()
+		while Snd.Playing do wait(7)
+			if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
+				Snd:Destroy()
+			end
+		end
+	end)
+end
+
+entity.Debug.OnEntityFinishedRebound = function(entityTable)
+    print("Entity has finished rebound:", entityTable.Model)
+end
+
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", entityTable.Model, "has entered room:", room)
+end
+
+entity.Debug.OnLookAtEntity = function(entityTable)
+    print("Player has looked at entity:", entityTable.Model)
+end
+
+entity.Debug.OnDeath = function(entityTable)
+    warn("Player has died.")
+end
+------------------------
+
+-- Run the created entity
+Creator.runEntity(entity)
+
+wait(20)
+	local Creator = loadstring(game:HttpGet("https://pastebin.com/raw/0fSnvfGt"))() 
+-- Create entity
+local entity = Creator.createEntity({
+    CustomName = "Rebound", -- Custom name of your entity
+    Model = "rbxassetid://12822692255", -- Can be GitHub file or rbxassetid
+    Speed = 80, -- Percentage, 100 = default Rush speed
+    DelayTime = 4, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 40,
+    BreakLights = false,
+    BackwardsMovement = true,
+    FlickerLights = {
+        false, -- Enabled/Disabled
+        3, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        WaitTime = 1,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {5, 8, 0.1, 1}, -- Shake values (don't change if you don't know)
+        90, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://0", -- Image1 url
+            Image2 = "rbxassetid://70799128001926", -- Image2 url
+            Shake = false,
+            Sound1 = {
+                103879029437685, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Sound2 = {
+                74885373257467, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
+            },
+            Tease = {
+                false, -- Enabled/Disabled
+                Min = 2,
+                Max = 4,
+            },
+        },
+    },
+    CustomDialog = {"You died to Rebound.", "It has a loud sound and it's coming from the front door.", "Hide in a closet to survive.", "Use the tactics you learned from Ambush."}, -- Custom death message
+})
+
+-----[[ Advanced ]]-----
+entity.Debug.OnEntitySpawned = function(entityTable)
+    print("looping")
+end
+
+entity.Debug.OnEntityDespawned = function(entityTable)
+    print("Entity has despawned:", entityTable.Model)
+end
+
+entity.Debug.OnEntityStartMoving = function(entityTable)
+	spawned = true
+	local Snd = Instance.new("Sound")
+	Snd.Volume = 1
+	Snd.Pitch = 1
+	Snd.SoundId = "rbxassetid://124209439410243"
+	Snd.Parent = workspace
+	Snd.Volume = 1
+	Snd:Play()
+	spawnsnd = Snd
+	game.Debris:AddItem(Snd,25)
+	spawn(function()
+		while Snd.Playing do wait(7)
+			if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
+				Snd:Destroy()
+			end
+		end
+	end)
+end
+
+entity.Debug.OnEntityFinishedRebound = function(entityTable)
+    print("Entity has finished rebound:", entityTable.Model)
+end
+
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", entityTable.Model, "has entered room:", room)
+end
+
+entity.Debug.OnLookAtEntity = function(entityTable)
+    print("Player has looked at entity:", entityTable.Model)
+end
+
+entity.Debug.OnDeath = function(entityTable)
+    warn("Player has died.")
+end
+------------------------
+
+-- Run the created entity
+Creator.runEntity(entity)
+
+wait(20)
+	local Creator = loadstring(game:HttpGet("https://pastebin.com/raw/0fSnvfGt"))() 
+-- Create entity
+local entity = Creator.createEntity({
+    CustomName = "Rebound", -- Custom name of your entity
+    Model = "rbxassetid://12822692255", -- Can be GitHub file or rbxassetid
+    Speed = 80, -- Percentage, 100 = default Rush speed
+    DelayTime = 4, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 40,
+    BreakLights = false,
+    BackwardsMovement = true,
+    FlickerLights = {
+        false, -- Enabled/Disabled
+        3, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        WaitTime = 1,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {5, 8, 0.1, 1}, -- Shake values (don't change if you don't know)
+        90, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://0", -- Image1 url
+            Image2 = "rbxassetid://70799128001926", -- Image2 url
+            Shake = false,
+            Sound1 = {
+                103879029437685, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Sound2 = {
+                74885373257467, -- SoundId
+                { Volume = 0.9 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
+            },
+            Tease = {
+                false, -- Enabled/Disabled
+                Min = 2,
+                Max = 4,
+            },
+        },
+    },
+    CustomDialog = {"You died to Rebound.", "It has a loud sound and it's coming from the front door.", "Hide in a closet to survive.", "Use the tactics you learned from Ambush."}, -- Custom death message
+})
+
+-----[[ Advanced ]]-----
+entity.Debug.OnEntitySpawned = function(entityTable)
+    print("looping")
+end
+
+entity.Debug.OnEntityDespawned = function(entityTable)
+    print("Entity has despawned:", entityTable.Model)
+end
+
+entity.Debug.OnEntityStartMoving = function(entityTable)
+	spawned = true
+	local Snd = Instance.new("Sound")
+	Snd.Volume = 1
+	Snd.Pitch = 1
+	Snd.SoundId = "rbxassetid://124209439410243"
+	Snd.Parent = workspace
+	Snd.Volume = 1
+	Snd:Play()
+	spawnsnd = Snd
+	game.Debris:AddItem(Snd,25)
+	spawn(function()
+		while Snd.Playing do wait(7)
+			if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").Health == 0 then
+				Snd:Destroy()
+			end
+		end
+	end)
+end
+
+entity.Debug.OnEntityFinishedRebound = function(entityTable)
+    print("Entity has finished rebound:", entityTable.Model)
+end
+
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", entityTable.Model, "has entered room:", room)
+end
+
+entity.Debug.OnLookAtEntity = function(entityTable)
+    print("Player has looked at entity:", entityTable.Model)
+end
+
+entity.Debug.OnDeath = function(entityTable)
+    warn("Player has died.")
+end
+------------------------
+
+-- Run the created entity
+Creator.runEntity(entity)
